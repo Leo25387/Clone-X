@@ -227,9 +227,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Fonction pour ajouter un nouveau post
     function addPost() {
+        console.log("addPost() - Début de la fonction addPost()"); // Vérification
         const content = postContentInput.value.trim();
-        const username = usernameInput.value.trim() || 'Anonyme'; // Nom d'utilisateur par défaut
+        const username = usernameInput.value.trim() || 'Anonyme';
+        console.log("addPost() - Contenu du post (après trim):", content); // Vérification
+        console.log("addPost() - Nom d'utilisateur:", username); // Vérification
         if (content !== '') {
+            console.log("addPost() - La condition 'content !== ''' est vraie."); // Vérification
             const posts = getPosts();
             const newPost = {
                 id: Date.now(),
@@ -237,12 +241,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 content: content,
                 avatar: 'https://randomuser.me/api/portraits/men/4.jpg'
             };
+            console.log("addPost() - Nouveau post créé:", newPost); // Vérification
             posts.push(newPost);
             savePosts(posts);
             displayPost(newPost);
             postContentInput.value = '';
             usernameInput.value = '';
+        } else {
+            console.log("addPost() - La condition 'content !== ''' est fausse : le contenu est vide."); // Vérification
         }
+        console.log("addPost() - Fin de la fonction addPost()"); // Vérification
     }
 
     // Fonction pour filtrer les posts par mot-clé
@@ -341,7 +349,16 @@ document.addEventListener('DOMContentLoaded', () => {
         clearInterval(refreshIntervalId);
     }
 
-    // Événements
+    // Ajout de la vérification de l'existence de postButton
+    if (postButton) {
+        postButton.addEventListener('click', () => { // Ajout d'une fonction anonyme
+            console.log("Le bouton 'Poster' a été cliqué !"); // Vérification
+            addPost();
+        });
+    } else {
+        console.error("L'élément avec l'ID 'post-button' n'a pas été trouvé. Vérifiez votre HTML.");
+    }
+
     searchInput.addEventListener('input', () => {
         const keyword = searchInput.value;
         filterPosts(keyword);
