@@ -1,15 +1,15 @@
 /* style.css */
 
 :root {
-    --bg-color: #000;
+    --bg-color: #000000; /* Noir profond pour le fond principal */
     --text-color: #fff;
     --accent-color: #1DA1F2;
-    --secondary-bg: #1A1A1A;
-    --border-color: #333;
-    --hover-bg: #262626;
+    --secondary-bg: #000000; /* Noir profond pour les zones secondaires */
+    --border-color: #2f3336; /* Gris très foncé pour les bordures (proche du noir) */
+    --hover-bg: #16181c; /* Gris foncé pour les effets de survol */
     --like-color: #e0245e;
     --retweet-color: #17bf63;
-    --notification-bg: #262626;
+    --notification-bg: #16181c; /* Gris foncé pour les notifications */
     --bookmark-color: #FFDC00; /* Couleur pour l'icône de signet */
 }
 
