@@ -1,16 +1,16 @@
 /* style.css */
 
 :root {
-    --bg-color: #000000; /* Noir profond pour le fond principal */
+    --bg-color: #000000;
     --text-color: #fff;
     --accent-color: #1DA1F2;
-    --secondary-bg: #000000; /* Noir profond pour les zones secondaires */
-    --border-color: #2f3336; /* Gris très foncé pour les bordures (proche du noir) */
-    --hover-bg: #16181c; /* Gris foncé pour les effets de survol */
+    --secondary-bg: #000000;
+    --border-color: #2f3336;
+    --hover-bg: #16181c;
     --like-color: #e0245e;
     --retweet-color: #17bf63;
-    --notification-bg: #16181c; /* Gris foncé pour les notifications */
-    --bookmark-color: #FFDC00; /* Couleur pour l'icône de signet */
+    --notification-bg: #16181c;
+    --bookmark-color: #FFDC00;
 }
 
 body {
@@ -19,7 +19,6 @@ body {
     padding: 0;
     background-color: var(--bg-color);
     color: var(--text-color);
-    /* overflow-y: scroll; Enlevé car on va gérer le scroll sur les éléments spécifiques */
 }
 
 .container {
@@ -105,8 +104,8 @@ body {
     border-right: 1px solid var(--border-color);
     border-left: 1px solid var(--border-color);
     padding: 0;
-    overflow-y: auto;
     height: 100vh;
+    overflow-y: auto;
 }
 
 .timeline-header {
@@ -498,34 +497,28 @@ body {
 
 /* --- Personnalisation de la barre de défilement (Webkit - Chrome, Safari) --- */
 ::-webkit-scrollbar {
-    width: 8px; /* Largeur de la barre de défilement */
+    width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-    background-color: var(--secondary-bg); /* Couleur de fond de la piste */
+    background-color: var(--secondary-bg);
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: var(--border-color); /* Couleur du "pouce" (la partie mobile) */
-    border-radius: 4px; /* Bord arrondi */
+    background-color: var(--border-color);
+    border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background-color: #555; /* Couleur au survol */
+    background-color: #555;
 }
 
-/* --- Personnalisation de la barre de défilement (Firefox) --- */
-/* Pour Firefox, on utilise des propriétés différentes */
-/* Note: La personnalisation sous Firefox est plus limitée */
-/* Vous pouvez changer la couleur de fond et la couleur du pouce */
-/* Pour des personnalisations plus poussées, il faudrait utiliser JavaScript */
-
-/* Pour le conteneur principal (si vous voulez une barre de défilement globale) */
-/* body {
-    scrollbar-width: thin; /* thin, auto, none */
-    scrollbar-color: var(--border-color) var(--secondary-bg);
-} */
-
+/* Style pour le terme de recherche surligné */
+.highlight {
+    background-color: rgba(0, 150, 255, 0.3); /* Bleu transparent */
+    font-weight: bold;
+    color: var(--text-color);
+}
 
 /* Appliquer le style aux éléments qui nécessitent le scroll */
 .timeline {
@@ -533,8 +526,8 @@ body {
     border-right: 1px solid var(--border-color);
     border-left: 1px solid var(--border-color);
     padding: 0;
-    overflow-y: auto;
     height: 100vh;
+    overflow-y: auto;
 }
 
 .widgets {

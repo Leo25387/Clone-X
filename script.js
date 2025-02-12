@@ -61,15 +61,17 @@ document.addEventListener('DOMContentLoaded', () => {
     // Fonction pour récupérer les posts depuis localStorage
     function getPosts() {
         const posts = localStorage.getItem('posts');
+        console.log("getPosts() - Récupération des posts depuis localStorage:", posts);
         return posts ? JSON.parse(posts) : [];
     }
 
     // Fonction pour sauvegarder les posts dans localStorage
     function savePosts(posts) {
         localStorage.setItem('posts', JSON.stringify(posts));
+        console.log("savePosts() - Sauvegarde des posts dans localStorage:", posts);
     }
 
-        // Fonction pour récupérer les signets depuis localStorage
+    // Fonction pour récupérer les signets depuis localStorage
     function getBookmarks() {
         const bookmarks = localStorage.getItem('bookmarks');
         return bookmarks ? JSON.parse(bookmarks) : [];
@@ -81,7 +83,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Fonction pour afficher un post
-    function displayPost(post, isBookmarked = false) {
+    function displayPost(post, isBookmarked = false, searchTerm = '') {
+        let content = post.content;
+
+        if (searchTerm) {
+            const regex = new RegExp(searchTerm, 'gi'); // 'gi' pour global et insensible à la casse
+            content = content.replace(regex, '<span class="highlight">$&</span>');
+        }
+
         const postDiv = document.createElement('div');
         postDiv.classList.add('post');
         postDiv.innerHTML = `
@@ -90,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
             <div class="post-content">
                 <div class="username">${post.username}</div>
-                <p>${post.content}</p>
+                <p>${content}</p>
                 <div class="post-options">
                     <i class="far fa-comment"></i>
                     <i class="fas fa-retweet retweet-button" data-post-id="${post.id}">
@@ -148,7 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-        // Fonction pour gérer l'ajout/suppression des signets
+    // Fonction pour gérer l'ajout/suppression des signets
     function toggleBookmark(postId, bookmarkButton) {
         let bookmarks = getBookmarks();
         const isBookmarked = bookmarks.includes(postId);
@@ -166,21 +175,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Fonction pour afficher tous les posts
     function displayAllPosts(filterBookmarks = false) {
+        console.log("displayAllPosts() - Début de l'affichage de tous les posts (filterBookmarks = " + filterBookmarks + ")");
         postList.innerHTML = '';
-        const posts = getPosts();
+        let posts = getPosts(); // Récupérer les posts
+
+        if (!posts || posts.length === 0) {
+            // Si aucun post, en générer quelques-uns au démarrage
+            console.log("displayAllPosts() - Aucun post trouvé. Génération de posts initiaux.");
+            posts = Array.from({ length: 5 }, () => generateRandomPost());
+            savePosts(posts);
+        }
+
         let bookmarks = getBookmarks();
 
         if (filterBookmarks) {
+            console.log("displayAllPosts() - Affichage des posts filtrés par signets.");
             posts.forEach(post => {
                 if (bookmarks.includes(post.id)) {
                     displayPost(post, true);
                 }
             });
         } else {
+            console.log("displayAllPosts() - Affichage de tous les posts.");
             posts.forEach(post => {
                 displayPost(post, bookmarks.includes(post.id));
             });
         }
+        console.log("displayAllPosts() - Fin de l'affichage de tous les posts.");
     }
 
     // Fonction pour afficher un utilisateur
@@ -226,16 +247,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Fonction pour filtrer les posts par mot-clé
     function filterPosts(keyword) {
+        console.log("filterPosts() - Début du filtrage des posts. Mot-clé:", keyword);
+        const isBookmarksTab = document.querySelector('.timeline-header h2').textContent === 'Signets';
+        console.log("filterPosts() - Est dans l'onglet Signets:", isBookmarksTab);
         postList.innerHTML = '';
         const posts = getPosts();
+        console.log("filterPosts() - Tous les posts récupérés:", posts);
         let bookmarks = getBookmarks();
-        const filteredPosts = posts.filter(post =>
-            post.content.toLowerCase().includes(keyword.toLowerCase()) ||
-            post.username.toLowerCase().includes(keyword.toLowerCase())
-        );
-        filteredPosts.forEach(post => {
-             displayPost(post, bookmarks.includes(post.id));
+        console.log("filterPosts() - Bookmarks récupérés:", bookmarks);
+        const filteredPosts = posts.filter(post => {
+            const contentMatch = post.content && post.content.toLowerCase().includes(keyword.toLowerCase());
+            const usernameMatch = post.username && post.username.toLowerCase().includes(keyword.toLowerCase());
+            const isBookmarked = bookmarks.includes(post.id);
+            const shouldDisplay = (contentMatch || usernameMatch) && (!isBookmarksTab || isBookmarked);
+            console.log(`filterPosts() - Post ID ${post.id}: Content Match=${contentMatch}, Username Match=${usernameMatch}, Is Bookmarked=${isBookmarked}, Should Display=${shouldDisplay}`);
+            return shouldDisplay;
         });
+        console.log("filterPosts() - Posts filtrés:", filteredPosts);
+        filteredPosts.forEach(post => {
+            displayPost(post, bookmarks.includes(post.id), keyword);
+        });
+        console.log("filterPosts() - Fin du filtrage des posts.");
     }
 
     // Fonction pour afficher le profil d'un utilisateur
@@ -262,14 +294,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-        // Fonction pour gérer les clics sur les tendances
+    // Fonction pour gérer les clics sur les tendances
     function handleTrendClick(event) {
         event.preventDefault();
         const trend = event.target.dataset.trend;
         filterPosts(trend);
     }
 
-     // Fonction pour générer des notifications fictives
+    // Fonction pour générer des notifications fictives
     function generateNotifications() {
         const notifications = [
             { id: 1, message: 'JohnDoe a aimé votre tweet.' },
@@ -277,7 +309,6 @@ document.addEventListener('DOMContentLoaded', () => {
             { id: 3, message: 'PeterJones a retweeté votre tweet.' },
             { id: 4, message: 'Votre tweet a atteint 100 likes.' }
         ];
-        return notifications;
     }
 
     // Fonction pour afficher les notifications
@@ -291,6 +322,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    let refreshIntervalId; // Variable pour stocker l'ID de l'intervalle
+
     // --- Rafraîchissement automatique des posts ---
     function refreshPosts() {
         const newPost = generateRandomPost();
@@ -300,53 +333,45 @@ document.addEventListener('DOMContentLoaded', () => {
         displayAllPosts(); // Réaffiche tous les posts
     }
 
-    // Rafraîchir les posts toutes les 5 secondes (5000 ms)
-    setInterval(refreshPosts, 5000);
+    function startRefreshing() {
+        refreshIntervalId = setInterval(refreshPosts, 5000);
+    }
 
-    // Initialisation
-    displayAllPosts();
-    displayAllUsers();
+    function stopRefreshing() {
+        clearInterval(refreshIntervalId);
+    }
 
     // Événements
-    postButton.addEventListener('click', addPost);
-
     searchInput.addEventListener('input', () => {
-        filterPosts(searchInput.value);
-    });
+        const keyword = searchInput.value;
+        filterPosts(keyword);
 
-    backToUsersButton.addEventListener('click', () => {
-        profileSection.style.display = 'none';
-        document.querySelector('.container').classList.remove('blur');
-    });
-
-    // Ajout d'écouteurs d'événements aux tendances
-    trendsList.addEventListener('click', handleTrendClick);
-
-     // Gestion du clic sur l'icône de notifications
-    notificationsLink.addEventListener('click', (event) => {
-        event.preventDefault();
-        displayNotifications();
-        notificationOverlay.style.display = 'flex';
-    });
-
-    // Gestion du clic sur le bouton "Fermer" des notifications
-    closeNotificationsButton.addEventListener('click', () => {
-        notificationOverlay.style.display = 'none';
+        // Arrêter le rafraîchissement si une recherche est en cours
+        if (keyword) {
+            stopRefreshing();
+        } else {
+            startRefreshing(); // Redémarrer si la barre de recherche est vide
+        }
     });
 
     // Gestion du clic sur l'onglet "Signets"
     bookmarksLink.addEventListener('click', (event) => {
         event.preventDefault();
-        displayAllPosts(true); // Afficher uniquement les signets
-        // Réinitialiser le titre de la timeline à "Signets"
+        displayAllPosts(true);
         document.querySelector('.timeline-header h2').textContent = 'Signets';
+        startRefreshing(); // Redémarrer le rafraîchissement quand on quitte la recherche
     });
 
     // Écouteur d'événement pour revenir à l'affichage de tous les posts
     document.querySelector('.sidebar [href="#"]').addEventListener('click', (event) => {
         event.preventDefault();
-        displayAllPosts(); // Afficher tous les posts
-        // Réinitialiser le titre de la timeline à "Accueil"
+        displayAllPosts();
         document.querySelector('.timeline-header h2').textContent = 'Accueil';
+        startRefreshing(); // Redémarrer le rafraîchissement quand on quitte la recherche
     });
+
+    // Initialisation
+    displayAllPosts();
+    displayAllUsers();
+    startRefreshing(); // Démarrer le rafraîchissement au chargement de la page
 });
