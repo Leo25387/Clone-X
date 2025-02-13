@@ -24,6 +24,10 @@ Voici quelques-unes des prochaines fonctionnalités à venir pour Clone-X :
 - Implémenter un mode sombre.
 - Améliorer l'optimisation mobile.
 
+## 📄 Licence
+
+Ce projet est sous licence [MIT](LICENSE).
+
 
 ## 📊 Statistiques
 
