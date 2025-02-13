@@ -34,6 +34,10 @@ Ce projet est sous licence [MIT](LICENSE).
 ![GitHub stars](https://img.shields.io/github/stars/Leo25387/Clone-X?style=social) ![GitHub forks](https://img.shields.io/github/forks/Leo25387/Clone-X?style=social)  
 ![GitHub issues](https://img.shields.io/github/issues/Leo25387/Clone-X)
 
+## 🔒 Sécurité
+
+La sécurité des données des utilisateurs est une priorité pour Clone-X. Nous ne récupérons pas vos données 
+
 ## 📞 Contact
 
 Si vous avez des questions ou des suggestions, vous pouvez me contacter à [Leolebg1999@gmail.com](mailto🥇leolebg1999@gmail.com).
