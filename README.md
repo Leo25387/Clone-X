@@ -39,3 +39,8 @@ Ce projet est sous licence [MIT](LICENSE).
 Si vous avez des questions ou des suggestions, vous pouvez me contacter à [Leolebg1999@gmail.com](mailto🥇leolebg1999@gmail.com).
 
 Vous pouvez suivre le projet ici sur [GitHub](https://github.com/Leo25387/Clone-X).
+
+## 🙏 Remerciements
+
+Merci à [Fabrice]([https://reactjs.org/](https://github.com/fabriceHategekimana) et [Nouvy]([https://nodejs.org/](https://github.com/Nouvy)) pour leur incroyable support dans le développement de ce projet.
+
