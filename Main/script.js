@@ -18,6 +18,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeNotificationsButton = document.getElementById('close-notifications');
     const bookmarksLink = document.getElementById('bookmarks-link');
 
+    const homeLink = document.querySelector('.sidebar [href="#"]');
+    const notificationSidebarLink = document.querySelector('.sidebar a[href="#notifications-link"]'); // Sélecteur plus spécifique
+    const bookmarksSidebarLink = document.querySelector('.sidebar a[href="#bookmarks-link"]');
+
     // --- Données améliorées ---
     const realisticUsernames = [
         'TechGuru2023', 'CodeNinja88', 'DataQueen', 'WebDevPro', 'PixelPusher',
@@ -105,7 +109,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="username">${post.username}</div>
                 <p>${content}</p>
                 <div class="post-options">
-                    <i class="far fa-comment"></i>
                     <i class="fas fa-retweet retweet-button" data-post-id="${post.id}">
                         <span class="retweet-count">${post.retweetCount || 0}</span>
                     </i>
@@ -135,6 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
         bookmarkButton.addEventListener('click', () => {
             toggleBookmark(post.id, bookmarkButton);
         });
+
     }
 
     // Fonction pour mettre à jour le nombre de likes
@@ -182,6 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log("displayAllPosts() - Début de l'affichage de tous les posts (filterBookmarks = " + filterBookmarks + ")");
         postList.innerHTML = '';
         let posts = getPosts(); // Récupérer les posts
+        let bookmarks = getBookmarks();
 
         if (!posts || posts.length === 0) {
             // Si aucun post, en générer quelques-uns au démarrage
@@ -190,7 +195,6 @@ document.addEventListener('DOMContentLoaded', () => {
             savePosts(posts);
         }
 
-        let bookmarks = getBookmarks();
 
         if (filterBookmarks) {
             console.log("displayAllPosts() - Affichage des posts filtrés par signets.");
@@ -245,12 +249,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 content: content,
                 avatar: 'https://randomuser.me/api/portraits/men/4.jpg',
                 likeCount: 0, // Initialise les likes à 0
-                retweetCount: 0 // Initialise les retweets à 0
+                retweetCount: 0
             };
             console.log("addPost() - Nouveau post créé:", newPost); // Vérification
             posts.push(newPost);
             savePosts(posts);
-            displayPost(newPost);
+            displayAllPosts();
             postContentInput.value = '';
             usernameInput.value = '';
         } else {
@@ -288,7 +292,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function showUserProfile(userId) {
         const user = users.find(user => user.id === userId);
         if (user) {
-            document.getElementById('profile-banner').src = 'https://images.unsplash.com/photo-1531403009284-440f080d1e12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+            document.getElementById('profile-banner').src = 'https://images.unsplash.com/photo-1531403009284-440f080d1e12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fA%3D%3D'
             profileAvatar.src = user.avatar;
             profileUsername.textContent = user.username;
             profileBio.textContent = user.bio;
@@ -323,6 +327,7 @@ document.addEventListener('DOMContentLoaded', () => {
             { id: 3, message: 'PeterJones a retweeté votre tweet.' },
             { id: 4, message: 'Votre tweet a atteint 100 likes.' }
         ];
+        return notifications;
     }
 
     // Fonction pour afficher les notifications
@@ -336,15 +341,29 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Fonction pour ouvrir la superposition des notifications
+    function openNotifications() {
+        displayNotifications(); // Affiche les notifications
+        notificationOverlay.style.display = 'flex'; // Affiche l'overlay
+    }
+
+    // Fonction pour fermer la superposition des notifications
+    function closeNotificationOverlay() {
+        notificationOverlay.style.display = 'none'; // Cache l'overlay
+    }
+
     let refreshIntervalId; // Variable pour stocker l'ID de l'intervalle
+    let isBookmarksTabActive = false; // Indique si l'onglet Signets est actif
 
     // --- Rafraîchissement automatique des posts ---
     function refreshPosts() {
-        const newPost = generateRandomPost();
-        const posts = getPosts();
-        posts.push(newPost); // Ajoute le nouveau post au tableau
-        savePosts(posts); // Sauvegarde le tableau mis à jour
-        displayAllPosts(); // Réaffiche tous les posts
+        if (!isBookmarksTabActive) { // Rafraîchit seulement si l'onglet Signets n'est pas actif
+            const newPost = generateRandomPost();
+            const posts = getPosts();
+            posts.push(newPost); // Ajoute le nouveau post au tableau
+            savePosts(posts); // Sauvegarde le tableau mis à jour
+            displayAllPosts(); // Réaffiche tous les posts
+        }
     }
 
     function startRefreshing() {
@@ -356,6 +375,18 @@ document.addEventListener('DOMContentLoaded', () => {
     function stopRefreshing() {
         clearInterval(refreshIntervalId);
         refreshIntervalId = null; // Réinitialise l'ID de l'intervalle
+    }
+
+    // Fonction pour mettre en évidence le lien actif dans la barre latérale
+    function highlightActiveLink(link) {
+        // Réinitialiser tous les liens
+        const sidebarLinks = document.querySelectorAll('.sidebar a');
+        sidebarLinks.forEach(a => {
+            a.classList.remove('active');
+        });
+
+        // Activer le lien actuel
+        link.classList.add('active');
     }
 
     // Ajout de la vérification de l'existence de postButton
@@ -383,21 +414,36 @@ document.addEventListener('DOMContentLoaded', () => {
     // Gestion du clic sur l'onglet "Signets"
     bookmarksLink.addEventListener('click', (event) => {
         event.preventDefault();
+        isBookmarksTabActive = true; // Indique que l'onglet Signets est actif
         displayAllPosts(true);
         document.querySelector('.timeline-header h2').textContent = 'Signets';
-        startRefreshing(); // Redémarrer le rafraîchissement quand on quitte la recherche
+        stopRefreshing(); // Arrête le rafraîchissement automatique
+        highlightActiveLink(bookmarksSidebarLink);
     });
 
     // Écouteur d'événement pour revenir à l'affichage de tous les posts
-    document.querySelector('.sidebar [href="#"]').addEventListener('click', (event) => {
+    homeLink.addEventListener('click', (event) => {
         event.preventDefault();
+        isBookmarksTabActive = false; // Indique que l'onglet Signets n'est plus actif
         displayAllPosts();
         document.querySelector('.timeline-header h2').textContent = 'Accueil';
-        startRefreshing(); // Redémarrer le rafraîchissement quand on quitte la recherche
+        startRefreshing(); // Redémarre le rafraîchissement automatique
+        highlightActiveLink(homeLink);
     });
+
+    // Écouteur d'événement pour le lien des notifications
+    notificationsLink.addEventListener('click', (event) => {
+        event.preventDefault(); // Empêche le comportement par défaut du lien
+        openNotifications(); // Ouvre la superposition des notifications
+        highlightActiveLink(notificationSidebarLink);
+    });
+
+    // Écouteur d'événement pour le bouton de fermeture des notifications
+    closeNotificationsButton.addEventListener('click', closeNotificationOverlay);
 
     // Initialisation
     displayAllPosts();
     displayAllUsers();
     startRefreshing(); // Démarrer le rafraîchissement au chargement de la page
+    highlightActiveLink(homeLink); // Mettre en évidence l'accueil par défaut
 });

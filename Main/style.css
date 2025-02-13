@@ -539,3 +539,26 @@ body {
     overflow-y: auto;
     background-color: var(--secondary-bg);
 }
+
+/* Style pour la barre latérale active - Liens */
+.sidebar a.active {
+    color: #fff; /* Couleur du texte blanc */
+}
+
+/* Style pour la barre latérale active - Icônes remplies en blanc */
+.sidebar a.active i.fas.fa-home, /* Accueil */
+.sidebar a.active i.far.fa-bell, /* Notifications */
+.sidebar a.active i.far.fa-bookmark { /* Signets */
+    color: #fff; /* Couleur blanche pour l'icône remplie */
+}
+
+/* Style pour la barre latérale active - Icônes d'image (Signets et Notifications) */
+.sidebar a.active img {
+    filter: brightness(0) invert(1); /* Filtre pour rendre l'icône blanche */
+}
+
+/* Style pour les icônes classiques */
+.sidebar i, .sidebar img {
+    color: var(--text-color); /* Couleur par défaut des icônes */
+    filter: none; /* Reset du filtre pour les icônes classiques */
+}
