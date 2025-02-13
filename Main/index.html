@@ -1,13 +1,19 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>X Clone (Simplifié)</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="icon" type="image/png" href="logo/logo.png"> <!-- Favicon pour l'onglet -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" type="image/png" href="logo/logo.png">
+    <!-- Favicon pour l'onglet -->
 </head>
+
 <body>
 
     <div class="container">
@@ -19,7 +25,8 @@
             <nav>
                 <ul>
                     <li><a href="#"><i class="fas fa-home"></i></a></li>
-                    <li><a href="grok.html"><img src="logo/grok.png" alt="Logo Grok" style="width: 30px; margin-bottom: 10px; margin-left: 5px;"></a></li>
+                    <li><a href="grok.html"><img src="logo/grok.png" alt="Logo Grok"
+                                style="width: 30px; margin-bottom: 10px; margin-left: 5px;"></a></li>
                     <li><a href="#" id="notifications-link"><i class="far fa-bell"></i></a></li>
                     <li><a href="#"><i class="far fa-envelope"></i></a></li>
                     <li><a href="#" id="bookmarks-link"><i class="far fa-bookmark"></i></a></li>
@@ -40,7 +47,8 @@
                     <img src="https://randomuser.me/api/portraits/men/4.jpg" alt="Votre Profil">
                 </div>
                 <div class="tweet-input-area">
-                    <input type="text" id="username-input" placeholder="Nom d'utilisateur" maxlength="20">
+                    <input type="text" id="username-input" placeholder="Nom d'utilisateur"
+                        maxlength="20">
                     <textarea id="post-content" placeholder="Quoi de neuf ?" maxlength="280"></textarea>
                     <div class="tweet-options">
                         <i class="far fa-image"></i>
@@ -75,7 +83,7 @@
             <div class="follow">
                 <h3>À suivre</h3>
                 <div id="user-list">
-                   <!-- Les utilisateurs seront ajoutés ici dynamiquement par JavaScript -->
+                    <!-- Les utilisateurs seront ajoutés ici dynamiquement par JavaScript -->
                 </div>
             </div>
         </aside>
@@ -84,7 +92,9 @@
             <div class="profile-container">
                 <button id="back-to-users" class="back-button"><i class="fas fa-arrow-left"></i></button>
                 <div class="profile-header">
-                    <img id="profile-banner" src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Bannière de profil">
+                    <img id="profile-banner"
+                        src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        alt="Bannière de profil">
                     <div class="profile-avatar-container">
                         <img id="profile-avatar" src="" alt="Avatar" class="profile-avatar">
                     </div>
@@ -104,7 +114,8 @@
         <!-- Notification Overlay -->
         <div id="notification-overlay" class="notification-overlay" style="display: none;">
             <div class="notification-container">
-                <button id="close-notifications" class="close-button"><i class="fas fa-times"></i></button>
+                <button id="close-notifications" class="close-button"><i
+                        class="fas fa-times"></i></button>
                 <h3>Notifications</h3>
                 <div id="notification-list" class="notifications">
                     <!-- Notifications will be added here dynamically -->
@@ -117,4 +128,5 @@
     <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
     <script src="https://files.bpcontent.cloud/2025/02/12/14/20250212141841-D6UR4D8G.js"></script>
 </body>
+
 </html>

@@ -50,11 +50,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function generateRandomPost() {
+        const likeCount = Math.floor(Math.random() * 100); // Nombre aléatoire de likes (0-99)
+        const retweetCount = Math.floor(Math.random() * 50); // Nombre aléatoire de retweets (0-49)
         return {
             id: Date.now(),
             username: getRandomElement(realisticUsernames),
             content: getRandomElement(realisticMessages),
-            avatar: `https://i.pravatar.cc/150?img=${Math.floor(Math.random() * 70)}` // Générateur d'avatars aléatoires
+            avatar: `https://i.pravatar.cc/150?img=${Math.floor(Math.random() * 70)}`, // Générateur d'avatars aléatoires
+            likeCount: likeCount, // Ajout du nombre de likes
+            retweetCount: retweetCount  // Ajout du nombre de retweets
         };
     }
 
@@ -239,7 +243,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 id: Date.now(),
                 username: username,
                 content: content,
-                avatar: 'https://randomuser.me/api/portraits/men/4.jpg'
+                avatar: 'https://randomuser.me/api/portraits/men/4.jpg',
+                likeCount: 0, // Initialise les likes à 0
+                retweetCount: 0 // Initialise les retweets à 0
             };
             console.log("addPost() - Nouveau post créé:", newPost); // Vérification
             posts.push(newPost);
@@ -342,11 +348,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function startRefreshing() {
-        refreshIntervalId = setInterval(refreshPosts, 5000);
+        if (!refreshIntervalId) { // Vérifie si l'intervalle est déjà en cours
+            refreshIntervalId = setInterval(refreshPosts, 5000);
+        }
     }
 
     function stopRefreshing() {
         clearInterval(refreshIntervalId);
+        refreshIntervalId = null; // Réinitialise l'ID de l'intervalle
     }
 
     // Ajout de la vérification de l'existence de postButton
