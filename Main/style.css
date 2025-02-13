@@ -562,3 +562,13 @@ body {
     color: var(--text-color); /* Couleur par défaut des icônes */
     filter: none; /* Reset du filtre pour les icônes classiques */
 }
+
+/* Style pour le nom d'utilisateur cliquable */
+.clickable-username {
+    cursor: pointer;
+    color: var(--accent-color);
+}
+
+.clickable-username:hover {
+    text-decoration: underline;
+}

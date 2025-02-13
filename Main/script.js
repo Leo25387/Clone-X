@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <img src="${post.avatar}" alt="Profile Picture">
             </div>
             <div class="post-content">
-                <div class="username">${post.username}</div>
+                <div class="username clickable-username" data-username="${post.username}">${post.username}</div>
                 <p>${content}</p>
                 <div class="post-options">
                     <i class="fas fa-retweet retweet-button" data-post-id="${post.id}">
@@ -126,6 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const likeButton = postDiv.querySelector('.like-button');
         const retweetButton = postDiv.querySelector('.retweet-button');
         const bookmarkButton = postDiv.querySelector('.bookmark-button');
+        const usernameElement = postDiv.querySelector('.clickable-username'); // Sélection du nom d'utilisateur
 
         likeButton.addEventListener('click', () => {
             updateLikeCount(post.id, likeButton);
@@ -139,6 +140,10 @@ document.addEventListener('DOMContentLoaded', () => {
             toggleBookmark(post.id, bookmarkButton);
         });
 
+         // Gestion du clic sur le nom d'utilisateur
+        usernameElement.addEventListener('click', () => {
+            showRandomUserProfile(); // Afficher un profil aléatoire
+        });
     }
 
     // Fonction pour mettre à jour le nombre de likes
@@ -310,6 +315,12 @@ document.addEventListener('DOMContentLoaded', () => {
             document.querySelector('.container').classList.add('blur'); // Ajouter un effet de flou
             profileSection.style.display = 'flex';
         }
+    }
+
+    // Fonction pour afficher un profil aléatoire
+    function showRandomUserProfile() {
+        const randomUser = getRandomElement(users);
+        showUserProfile(randomUser.id);
     }
 
     // Fonction pour gérer les clics sur les tendances
