@@ -36,11 +36,15 @@ Ce projet est sous licence [MIT](LICENSE).
 
 ## 🔒 Sécurité
 
-La sécurité des données des utilisateurs est une priorité pour Clone-X. Nous ne récupérons pas vos données 
+La sécurité des données des utilisateurs est une priorité pour Clone-X. Nous ne récupérons pas vos données.
 
 ## 🤝 Contribuer
 
 Pour savoir comment contribuer au projet, veuillez consulter notre [guide de contribution](CONTRIBUTING.md).
+
+## 🐞 Problèmes ouverts
+
+Nous encourageons la communauté à signaler tout bug ou à soumettre des propositions d'amélioration. Consultez les [problèmes ouverts](https://github.com/Leo25387/Clone-X/issues) pour plus d'informations.
 
 ## 📞 Contact
 
