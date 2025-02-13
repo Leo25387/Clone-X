@@ -42,5 +42,4 @@ Vous pouvez suivre le projet ici sur [GitHub](https://github.com/Leo25387/Clone-
 
 ## 🙏 Remerciements
 
-Merci à [Fabrice]([https://github.com/fabriceHategekimana]) et [Nouvy]([https://nodejs.org/](https://github.com/Nouvy]) pour leur incroyable support dans le développement de ce projet.
-
+Merci à [Nouvy](https://github.com/Nouvy) et [fabriceHategekimana](https://github.com/fabriceHategekimana) pour leur soutien et leurs contributions à ce projet.
