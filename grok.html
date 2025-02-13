@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grok-ish</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+          integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <style>
+        :root {
+            --grok-bg: #000000;
+            --grok-text: #c9d1d9;
+            --grok-accent: #1DA1F2;
+            --grok-border: #30363d;
+            --grok-prompt-bg: #161b22;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif; /* Police plus proche de Grok */
+            background-color: var(--grok-bg);
+            color: var(--grok-text);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 800px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Style pour le bouton de retour */
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: transparent;
+            color: var(--grok-text);
+            border: none;
+            font-size: 1.5em;
+            cursor: pointer;
+            z-index: 10;
+            transition: color 0.3s;
+        }
+
+        .back-button:hover {
+            color: #fff; /* Changer la couleur au survol */
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 3em;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+
+        /* Style pour le logo */
+        .logo {
+            width: 100px; /* Ajustez la taille du logo selon vos besoins */
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        .prompt-container {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            background-color: var(--grok-prompt-bg);
+            border-radius: 30px; /* Bord plus arrondi */
+            padding: 10px 20px;
+            margin-bottom: 20px;
+            border: 1px solid var(--grok-border); /* Ajout d'une bordure */
+        }
+
+        /* Style pour le bouton de chargement de fichier */
+        .attach-button {
+            background-color: transparent;
+            color: #8899A6;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            margin-right: 10px;
+            font-size: 1.1em;
+            transition: color 0.3s;
+        }
+
+        .attach-button:hover {
+            color: var(--grok-text);
+        }
+
+        #prompt {
+            width: 100%;
+            padding: 12px;
+            background-color: transparent;
+            color: var(--grok-text);
+            border: none;
+            outline: none;
+            font-size: 1.2em;
+        }
+
+        .prompt-container button {
+            background-color: #30363d; /* Gris plus foncé */
+            color: var(--grok-text);
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 50%;
+            margin-left: 15px;
+            transition: background-color 0.3s;
+        }
+
+        .prompt-container button:hover {
+            background-color: #444c56; /* Gris légèrement plus clair au survol */
+        }
+
+        .disclaimer {
+            color: #8899A6;
+            font-size: 0.9em;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .examples {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .example-card {
+            background-color: var(--grok-prompt-bg);
+            color: var(--grok-text);
+            padding: 15px;
+            margin: 10px;
+            border-radius: 15px; /* Bords plus arrondis */
+            width: 250px;
+            text-align: left;
+            cursor: pointer;
+            border: 1px solid var(--grok-border);
+            transition: background-color 0.3s;
+        }
+
+        .example-card:hover {
+            background-color: #21262d; /* Légèrement plus clair au survol */
+        }
+
+        .example-card i {
+            color: var(--grok-accent); /* Couleur d'accent */
+            margin-right: 5px;
+        }
+
+        #response {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: var(--grok-prompt-bg);
+            border: 1px solid var(--grok-border);
+            white-space: pre-wrap;
+            width: 100%;
+            border-radius: 10px; /* Bords plus arrondis */
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+
+        /* Mobile adjustments */
+        @media (max-width: 600px) {
+            .container {
+                width: 95%;
+                padding: 15px;
+            }
+
+            .examples {
+                justify-content: flex-start;
+            }
+
+            .example-card {
+                width: 100%; /* Les exemples prennent toute la largeur sur mobile */
+                margin: 5px 0;
+            }
+        }
+    </style>
+     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<a href="index.html" class="back-button">
+    <i class="fas fa-arrow-left"></i>
+</a>
+
+<div class="container">
+    <img src="logo/grok.png" alt="Grok Logo" class="logo">
+
+    <div class="prompt-container">
+        <button class="attach-button">
+            <i class="fas fa-paperclip"></i>
+        </button>
+        <input type="text" id="prompt" placeholder="Posez une question"/>
+        <button id="generate"><i class="fas fa-arrow-up"></i></button>
+    </div>
+
+    <p class="disclaimer">Grok peut faire des erreurs. Vérifiez ses résultats.</p>
+
+    <div class="examples">
+        <div class="example-card" data-prompt="Donne-moi les dernières nouvelles sportives">
+            <i class="fas fa-trophy"></i> Donne-moi les dernières nouvelles sportives
+        </div>
+        <div class="example-card" data-prompt="Aide-moi à faire mes devoirs de maths">
+            <i class="fas fa-pencil-alt"></i> Aide-moi à faire mes devoirs de maths
+        </div>
+        <div class="example-card" data-prompt="Quand l'homme atterrira-t-il pour la première fois sur Mars ?">
+            <i class="fas fa-rocket"></i> Quand l'homme atterrira-t-il pour la première fois sur Mars ?
+        </div>
+        <div class="example-card" data-prompt="À quoi ressemblera le monde dans 50 ans ?">
+            <i class="fas fa-globe"></i> À quoi ressemblera le monde dans 50 ans ?
+        </div>
+    </div>
+
+    <div class="response" id="response"></div>
+</div>
+
+<script>
+    const apiKey = "AIzaSyA3peRO8kf6P4G8vWOm2aRf8InF4rTexxE"; // Replace with your actual API key (DANGER: Protect this key!)
+    const generateButton = document.getElementById('generate');
+    const promptInput = document.getElementById('prompt');
+    const responseDiv = document.getElementById('response');
+
+    generateButton.addEventListener('click', async () => {
+        const prompt = promptInput.value;
+
+        if (!prompt || prompt.trim() === "") {
+            responseDiv.textContent = "Veuillez entrer une question.";
+            return;
+        }
+
+        responseDiv.textContent = "Génération en cours...";
+
+        try {
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+            const requestOptions = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    "contents": [{
+                        "parts": [{"text": prompt.trim()}]
+                    }]
+                })
+            };
+
+            const response = await fetch(apiUrl, requestOptions);
+
+            if (!response.ok) {
+                console.error("HTTP Error:", response.status, response.statusText, await response.text());
+                throw new Error(`HTTP Error: ${response.status} ${response.statusText}`);
+            }
+
+            const data = await response.json();
+            console.log("API Response:", data);
+
+            if (data && data.candidates && data.candidates.length > 0) {
+                const candidate = data.candidates[0];
+                if (candidate.content && candidate.content.parts && candidate.content.parts.length > 0) {
+                    const textPart = candidate.content.parts[0];
+                    if (textPart.text) {
+                        responseDiv.textContent = textPart.text;
+                    } else {
+                        responseDiv.textContent = "Aucun texte trouvé dans la réponse.";
+                    }
+                } else {
+                    responseDiv.textContent = "Aucune partie de contenu valide trouvée dans la réponse.";
+                }
+            } else {
+                responseDiv.textContent = "Aucune réponse valide reçue de l'API.";
+            }
+
+        } catch (error) {
+            console.error("Error during generation:", error);
+            responseDiv.textContent = `Error: ${error.message}`;
+        }
+    });
+
+    // Pré-remplir la zone de texte quand on clique sur un exemple
+    const exampleCards = document.querySelectorAll('.example-card');
+    exampleCards.forEach(card => {
+        card.addEventListener('click', () => {
+            promptInput.value = card.dataset.prompt; // Update text input
+            generateButton.click(); // Lancer la recherche directement après avoir cliquer sur une carte
+        });
+    });
+</script>
+</body>
+</html>
