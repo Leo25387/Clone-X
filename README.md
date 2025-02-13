@@ -12,6 +12,6 @@ Clone-X est un site web qui réplique les principales fonctionnalités de Twitte
 
 ## Contact
 
-Si vous avez des questions ou des suggestions, vous pouvez me contacter à [ton_email@example.com](mailto:ton_email@example.com).
+Si vous avez des questions ou des suggestions, vous pouvez me contacter à [Leolebg1999@gmail.com](mailto🥇leolebg1999@gmail.com).
 
 Vous pouvez suivre le projet ici sur [GitHub](https://github.com/Leo25387/Clone-X).
