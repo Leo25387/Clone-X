@@ -52,6 +52,13 @@ Si vous avez des questions ou des suggestions, vous pouvez me contacter à [Leol
 
 Vous pouvez suivre le projet ici sur [GitHub](https://github.com/Leo25387/Clone-X).
 
+## 🎉 Remerciements
+
+Toutes les contributions sont appréciées ! Que vous ayez corrigé un bug, ajouté une fonctionnalité ou amélioré la documentation, chaque effort fait une grande différence.
+
+Les contributeurs les plus actifs auront leur nom mentionné dans la section "Remerciements" du `README.md`.
+
+
 ## 🙏 Remerciements
 
 Merci à [Nouvy](https://github.com/Nouvy) et [fabrice](https://github.com/fabriceHategekimana) pour leur soutien et leurs contributions à ce projet.
