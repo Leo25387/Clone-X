@@ -13,7 +13,7 @@ Clone-X est un site web qui réplique les principales fonctionnalités de Twitte
 - [📸 Logo](#-logo)
 - [📲 Aperçu](#-aperçu)
 - [🚀 Fonctionnalités](#-fonctionnalités)
-- [📸 AI](#-ai)
+- [🤖 AI](#-ai)
 - [🛠️ Technologies utilisées](#%EF%B8%8F-technologies-utilisées)
 - [🛤️ Feuille de route](#%EF%B8%8F-feuille-de-route)
 - [📄 Licence](#-licence)
