@@ -32,7 +32,7 @@ Clone-X est un site web qui réplique les principales fonctionnalités de Twitte
 - Discuter avec Grok
 
 ## 🤖 AI
-- [🤯 Tester Grock AI copie sur X-copie]
+- 🤯 Tester Grock AI copie sur X-copie
 ![GIF d'AI](Main/gif/ai.gif)
 
 ## 🛠️ Technologies utilisées
