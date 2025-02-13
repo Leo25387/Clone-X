@@ -5,9 +5,13 @@ Clone-X est un site web qui réplique les principales fonctionnalités de Twitte
 ## 📸 Logo
 ![Image de présentation](Main/logo/logo.png)
 
+## 📲 Aperçu
+![GIF de présentation](Main/gif/bonjour.gif)
+
 ## 📚 Table des Matières
 
 - [📸 Logo](#-logo)
+- [📲 Aperçu](#-aperçu)
 - [🚀 Fonctionnalités](#-fonctionnalités)
 - [🛠️ Technologies utilisées](#%EF%B8%8F-technologies-utilisées)
 - [🛤️ Feuille de route](#%EF%B8%8F-feuille-de-route)
@@ -44,9 +48,7 @@ Ce projet est sous licence [MIT](LICENSE).
 
 ## 📊 Statistiques
 
-![GitHub repo size](https://img.shields.io/github/repo-size/Leo25387/Clone-X) ![GitHub contributors](https://img.shields.io/github/contributors/Leo25387/Clone-X)  
-![GitHub stars](https://img.shields.io/github/stars/Leo25387/Clone-X?style=social) ![GitHub forks](https://img.shields.io/github/forks/Leo25387/Clone-X?style=social)  
-![GitHub issues](https://img.shields.io/github/issues/Leo25387/Clone-X)
+![GitHub repo size](https://img.shields.io/github/repo-size/Leo25387/Clone-X) ![GitHub contributors](https://img.shields.io/github/contributors/Leo25387/Clone-X) ![GitHub stars](https://img.shields.io/github/stars/Leo25387/Clone-X?style=social) ![GitHub forks](https://img.shields.io/github/forks/Leo25387/Clone-X?style=social) ![GitHub issues](https://img.shields.io/github/issues/Leo25387/Clone-X)
 
 ## 🔒 Sécurité
 
