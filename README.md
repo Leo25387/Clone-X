@@ -38,6 +38,10 @@ Ce projet est sous licence [MIT](LICENSE).
 
 La sécurité des données des utilisateurs est une priorité pour Clone-X. Nous ne récupérons pas vos données 
 
+## 🤝 Contribuer
+
+Pour savoir comment contribuer au projet, veuillez consulter notre [guide de contribution](CONTRIBUTING.md).
+
 ## 📞 Contact
 
 Si vous avez des questions ou des suggestions, vous pouvez me contacter à [Leolebg1999@gmail.com](mailto🥇leolebg1999@gmail.com).
