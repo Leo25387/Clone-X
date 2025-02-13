@@ -2,7 +2,16 @@
 
 Clone-X est un site web qui réplique les principales fonctionnalités de Twitter. Ce projet est conçu pour démontrer la création d'une plateforme de microblogging avec des technologies modernes. Il permet aux utilisateurs de de publier des tweets, de suivre d'autres utilisateurs et d'interagir avec leurs publications.
 
+## Logo
 ![Image de présentation](logo/logo.png)
+
+## Fonctionnalités
+
+- Publier des tweets
+- Suivre et être suivi par d'autres utilisateurs
+- Liker et retweeter des publications
+- Interface utilisateur responsive et moderne
+- Discuter avec Grok
 
 ## Statistiques
 
