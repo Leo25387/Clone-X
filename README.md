@@ -16,6 +16,15 @@ Clone-X est un site web qui réplique les principales fonctionnalités de Twitte
 ## 🛠️ Technologies utilisées
 - Frontend : HTML, CSS, JavaScript (local-storage)
 
+## 🛤️ Feuille de route
+
+Voici quelques-unes des prochaines fonctionnalités à venir pour Clone-X :
+
+- Ajouter un système de notifications en temps réel.
+- Implémenter un mode sombre.
+- Améliorer l'optimisation mobile.
+
+
 ## 📊 Statistiques
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/Leo25387/Clone-X) ![GitHub contributors](https://img.shields.io/github/contributors/Leo25387/Clone-X)  
