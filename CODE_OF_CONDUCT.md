@@ -1,4 +1,4 @@
-## Code de conduite de Clone-X
+# Code de conduite de Clone-X
 Nous nous engageons à créer un environnement ouvert, inclusif et respectueux pour tous les contributeurs. Que vous soyez un utilisateur, un développeur, ou que vous participiez d'une autre manière à ce projet, nous vous demandons de respecter les lignes directrices suivantes :
 
 ## Comportement attendu
@@ -21,7 +21,7 @@ Respecter les différentes opinions et approches tout en étant ouvert à la dis
 Signalement de problèmes
 Si vous êtes témoin ou victime d'un comportement inapproprié, nous vous encourageons à signaler le problème directement aux mainteneurs du projet. Vous pouvez nous contacter à leolebg1999@gmail.com.
 
-# Les signalements seront traités de manière confidentielle. Nous nous efforcerons de résoudre les conflits rapidement et de manière équitable.
+## Les signalements seront traités de manière confidentielle. Nous nous efforcerons de résoudre les conflits rapidement et de manière équitable.
 
 ## Conséquences des comportements inacceptables
 Tout comportement qui viole ce code de conduite peut entraîner des mesures disciplinaires, telles que :
